@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    expose:
+      - 4000
+    # uncomment if you want to do docker exec -it trio-umbrella_web_1 bash and
+    # run your own command. Ie: like iex -S mix phx.server required for IEx.pry
+    # command: bash -c "while [ true ]; do sleep 10; done"
+    environment:
+      - MIX_ENV=dev
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    volumes:
+      - './data:/var/lib/postgresql/data'

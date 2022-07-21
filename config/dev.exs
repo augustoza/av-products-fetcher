@@ -4,9 +4,8 @@ import Config
 config :av_products_fetcher, AvProductsFetcher.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "localhost",
-  database: "av_products_fetcher_dev",
-  stacktrace: true,
+  database: "av_products_db",
+  hostname: "postgres",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

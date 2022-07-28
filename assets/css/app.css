@@ -1,5 +1,6 @@
 /* This file is for your main application CSS */
 @import "./phoenix.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 /* Alerts and form errors used by phx.new */
 .alert {
@@ -117,4 +118,14 @@
 @keyframes fade-out-keys{
   0% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+.inova-navbar {
+  height: 70px;
+}
+.inova-prices {
+  height: 100%;
+}
+.inova-logo{
+  height: 100%;
 }

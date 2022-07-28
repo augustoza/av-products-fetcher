@@ -56,7 +56,7 @@ config :av_products_fetcher, AvProductsFetcherWeb.Endpoint,
 config :av_products_fetcher, AvProductsFetcherWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/.*(js|css|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/av_products_fetcher_web/(live|views)/.*(ex)$",
       ~r"lib/av_products_fetcher_web/templates/.*(eex)$"

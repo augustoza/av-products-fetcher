@@ -15,9 +15,9 @@ defmodule AvProductsFetcherWeb.Router do
   end
 
   scope "/", AvProductsFetcherWeb do
-    pipe_through :browser
+    pipe_through [:browser]
 
-    get "/", PageController, :index
+    live "/precos", PriceLive
   end
 
   # Other scopes may use custom stacks.

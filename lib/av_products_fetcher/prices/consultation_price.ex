@@ -17,6 +17,6 @@ defmodule AvProductsFetcher.Prices.ConsultationPrice do
   def changeset(consultation_price, attrs) do
     consultation_price
     |> cast(attrs, [:last_fetched_price, :base_link, :product_link, :product_id])
-    |> validate_required([:last_fetched_price, :base_link, :product_link, :product_id])
+    |> validate_required([:base_link, :product_link, :product_id])
   end
 end

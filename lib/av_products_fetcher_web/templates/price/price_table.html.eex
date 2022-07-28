@@ -1,0 +1,32 @@
+<div class="d-flex align-items-center justify-content-between mt-5 mb-5 inova-navbar">
+  <div class="d-flex align-items-center inova-prices">
+    <%= img_tag "images/inova-logo.png", class: "inova-logo" %>
+    <h1 class="ms-5">Comparador de preços</h1>
+  </div>
+  <button phx-click="fetch_prices">Buscar preços</button>
+</div>
+
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">sku</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Compra recente mais barata</th>
+      <th scope="col">Preço de hoje - Cotabest</th>
+      <th scope="col">Economia na compra</th>
+      <th scope="col">Link Cotabest</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for product <- @products do %>
+      <tr>
+        <th scope="row"><%= product.id %></th>
+        <td><%= product.name %></td>
+        <td><%= product.cheapest_price %></td>
+        <td><%= product.last_fetched_price %></td>
+        <td><%= if is_binary(product.economy), do: product.economy, else: "#{product.economy}%" %></td>
+        <td><a href="<%= product.product_link %>" target="_blank">Acessar link</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

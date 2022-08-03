@@ -25,6 +25,7 @@ defmodule AvProductsFetcher.Prices do
         end
 
       cheapest_price = calculate_cheapest_price(product)
+      calculated_economy = calculate_economy(consultation_price.last_fetched_price, cheapest_price)
 
       %{
         id: product.id,
@@ -32,8 +33,9 @@ defmodule AvProductsFetcher.Prices do
         cheapest_price: cheapest_price,
         last_fetched_price: consultation_price.last_fetched_price || "Não localizado",
         product_link: consultation_price.product_link,
-        economy: calculate_economy(consultation_price.last_fetched_price, cheapest_price),
-        base_link: consultation_price.base_link
+        economy: calculated_economy,
+        base_link: consultation_price.base_link,
+        color_class: get_color_class(calculated_economy)
       }
     end)
   end
@@ -46,6 +48,12 @@ defmodule AvProductsFetcher.Prices do
 
   def get_consultation_price!(id), do: Repo.get!(ConsultationPrice, id)
 
+  def update_consultation_price(%ConsultationPrice{} = consultation_price, attrs) do
+    consultation_price
+    |> ConsultationPrice.changeset(attrs)
+    |> Repo.update()
+  end
+
   def create_product(attrs \\ %{}) do
     %Product{}
     |> Product.changeset(attrs)
@@ -56,6 +64,14 @@ defmodule AvProductsFetcher.Prices do
     %ConsultationPrice{}
     |> ConsultationPrice.changeset(attrs)
     |> Repo.insert()
+  end
+
+  defp get_color_class(economy) do
+    cond do
+      is_binary(economy) -> "color-default"
+      economy > 0 -> "color-green"
+      true -> "color-red"
+    end
   end
 
   defp calculate_cheapest_price(product) do

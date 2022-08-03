@@ -6,14 +6,18 @@
   <button phx-click="fetch_prices">Buscar preços</button>
 </div>
 
+<form phx-change="search_product_table">
+  <input class="mb-2" type="text" placeholder="Procurar..." name="search_value">
+</form>
+
 <table class="table">
   <thead class="table-dark">
     <tr>
       <th scope="col">sku</th>
       <th scope="col">Nome</th>
-      <th scope="col">Compra recente mais barata</th>
       <th scope="col">Preço de hoje - Cotabest</th>
-      <th scope="col">Economia na compra</th>
+      <th scope="col">Compra recente mais barata</th>
+      <th scope="col">Economia</th>
       <th scope="col">Link Cotabest</th>
     </tr>
   </thead>
@@ -22,9 +26,9 @@
       <tr>
         <th scope="row"><%= product.id %></th>
         <td><%= product.name %></td>
-        <td><%= product.cheapest_price %></td>
         <td><%= product.last_fetched_price %></td>
-        <td><%= if is_binary(product.economy), do: product.economy, else: "#{product.economy}%" %></td>
+        <td><%= product.cheapest_price %></td>
+        <td class="<%= product.color_class %>"><%= if is_binary(product.economy), do: product.economy, else: "#{product.economy}%" %></td>
         <td><a href="<%= product.product_link %>" target="_blank">Acessar link</a></td>
       </tr>
     <% end %>

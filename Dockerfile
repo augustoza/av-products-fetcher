@@ -10,8 +10,8 @@ RUN apt-get update && \
 WORKDIR /app
 
 # install phoenix packages
-RUN mix local.hex --force
-RUN mix local.rebar --force
+RUN mix local.hex --force && \
+    mix local.rebar --force
 RUN mix archive.install hex phx_new 1.6.10
 
 # install nodejs

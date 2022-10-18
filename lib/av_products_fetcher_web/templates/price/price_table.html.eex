@@ -27,7 +27,7 @@
         <th scope="row"><%= product.id %></th>
         <td><%= product.name %></td>
         <td><%= product.last_fetched_price %></td>
-        <td><%= product.cheapest_price %></td>
+        <td><%= AvProductsFetcher.Prices.get_price_and_date(product) %></td>
         <td class="<%= product.color_class %>"><%= if is_binary(product.economy), do: product.economy, else: "#{product.economy}%" %></td>
         <td><a href="<%= product.product_link %>" target="_blank">Acessar link</a></td>
       </tr>

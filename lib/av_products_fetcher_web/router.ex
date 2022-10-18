@@ -35,6 +35,7 @@ defmodule AvProductsFetcherWeb.Router do
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
 
+
     scope "/" do
       pipe_through :browser
 
